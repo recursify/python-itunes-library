@@ -30,11 +30,17 @@ class SimpleDataHandler(object, xml.sax.handler.ContentHandler):
     After parsing, the final item is accessible through the final_item
     attribute.
     """
+
+    # XXX: Don't do any conversions now.  <key>123</key>
+    # doesn't provide any type information, so converting
+    # primitive types, like integers, produces inconsistent
+    # results
+
     # Mapping of type -> conversion function
     types = {
-        'string'  : null, # Not happy with unicode
-        'date'    : str,  # Could use strftime...
-        'integer' : int   # Convert to int
+        'string'  : null,  # Not happy with unicode
+        'date'    : null,  # Could use strftime...
+        'integer' : null   # Convert to int
         }
 
     def __init__(self):
