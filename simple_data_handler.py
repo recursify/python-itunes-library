@@ -58,12 +58,12 @@ class SimpleDataHandler(object, xml.sax.handler.ContentHandler):
     def endElement(self, name):
         if 'key' == name:
             current_key = ''.join(self.content).strip()
-            self.content = []
+            #self.content = []
             self.current_item.add_key(current_key)
         elif name in self.types:
             f = self.types[name]
             item = f(''.join(self.content).strip())
-            self.content = []
+            #self.content = []
             self.current_item.add_item(item)
         elif name == 'dict' or name == 'array':
             finished = self.stack.pop(-1)
@@ -71,6 +71,8 @@ class SimpleDataHandler(object, xml.sax.handler.ContentHandler):
                 self.current_item.add_item(finished)
             else:
                 self.final_item = finished
+
+        self.content=[]
         
     def characters(self, content):
         self.content.append(content)
