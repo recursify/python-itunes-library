@@ -1,0 +1,3 @@
+The SimpleDataHandler can be used to parse JSON-like documents, like test.xml.
+
+    python 
